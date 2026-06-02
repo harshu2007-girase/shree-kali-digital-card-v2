@@ -1,0 +1,14 @@
+{
+  "name": "shree-kali-dg-card",
+  "version": "1.0.0",
+  "description": "Premium Shree Kali Manufacturers digital business card with inquiry storage and visitor counter.",
+  "main": "preview-server.js",
+  "scripts": {
+    "start": "node preview-server.js",
+    "check": "node --check script.js && node --check preview-server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED"
+}
