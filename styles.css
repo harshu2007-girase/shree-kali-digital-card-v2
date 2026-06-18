@@ -5091,3 +5091,207 @@ body {
     min-height: 40px;
   }
 }
+
+.icon-grid .sensor-scan-tile {
+  position: relative;
+  border-color: rgba(28, 217, 174, 0.68);
+  background:
+    radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.2), transparent 28%),
+    radial-gradient(circle at 82% 14%, rgba(25, 210, 158, 0.28), transparent 36%),
+    linear-gradient(145deg, rgba(4, 55, 47, 0.98), rgba(7, 10, 8, 0.98));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 16px 32px rgba(0, 0, 0, 0.34),
+    0 0 30px rgba(24, 209, 156, 0.18);
+  animation: rodScanGlow 3.6s ease-in-out infinite;
+}
+
+.icon-grid .sensor-scan-tile svg {
+  border-color: rgba(213, 255, 240, 0.82);
+  background:
+    radial-gradient(circle at 35% 24%, rgba(255, 255, 255, 0.48), transparent 27%),
+    conic-gradient(from 220deg, #0f6c59, #18d19c, #fff1b8, #10a982, #0f6c59);
+  color: #041510;
+  animation: rodQrPulse 2.8s ease-in-out infinite;
+}
+
+.icon-grid .gold-process-tile {
+  position: relative;
+  border-color: rgba(255, 186, 64, 0.72);
+  background:
+    radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.22), transparent 28%),
+    radial-gradient(circle at 82% 14%, rgba(255, 128, 38, 0.3), transparent 36%),
+    linear-gradient(145deg, rgba(61, 25, 6, 0.98), rgba(9, 8, 6, 0.98));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 16px 32px rgba(0, 0, 0, 0.34),
+    0 0 32px rgba(255, 153, 42, 0.2);
+  animation: rodScanGlow 3.2s ease-in-out infinite;
+}
+
+.icon-grid .gold-process-tile svg {
+  border-color: rgba(255, 235, 177, 0.82);
+  background:
+    radial-gradient(circle at 35% 24%, rgba(255, 255, 255, 0.5), transparent 27%),
+    conic-gradient(from 220deg, #7a2f09, #ff9b25, #fff0b3, #db6610, #7a2f09);
+  color: #fff4c2;
+  animation: rodQrPulse 2.6s ease-in-out infinite;
+}
+
+.icon-grid .theme-toggle-tile {
+  position: relative;
+  border-color: rgba(255, 230, 163, 0.54);
+  background:
+    radial-gradient(circle at 22% 0%, rgba(255, 255, 255, 0.18), transparent 30%),
+    radial-gradient(circle at 80% 18%, rgba(255, 211, 95, 0.24), transparent 34%),
+    linear-gradient(145deg, rgba(31, 33, 32, 0.98), rgba(5, 7, 6, 0.99));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 16px 32px rgba(0, 0, 0, 0.3),
+    0 0 28px rgba(244, 190, 76, 0.14);
+}
+
+.icon-grid .theme-toggle-tile svg {
+  border-color: rgba(255, 240, 185, 0.78);
+  background:
+    radial-gradient(circle at 35% 24%, rgba(255, 255, 255, 0.46), transparent 27%),
+    conic-gradient(from 210deg, #102019, #f2c65b, #fff0b5, #17966f, #102019);
+  color: #fff5c9;
+}
+
+.icon-grid .sensor-scan-tile small,
+.icon-grid .gold-process-tile small,
+.icon-grid .theme-toggle-tile small {
+  color: rgba(255, 230, 163, 0.86);
+  font-size: clamp(9px, 1.25vw, 10px);
+  font-weight: 950;
+  line-height: 1.08;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+body[data-theme="light"] {
+  background:
+    radial-gradient(circle at 16% 0%, rgba(255, 157, 48, 0.22), transparent 25%),
+    radial-gradient(circle at 90% 9%, rgba(255, 218, 128, 0.32), transparent 28%),
+    linear-gradient(180deg, #fffaf4 0%, #fff1df 44%, #f8e1c5 100%);
+  color: #152920;
+}
+
+body[data-theme="light"] .dg-card {
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(255, 244, 230, 0.98)),
+    repeating-linear-gradient(90deg, rgba(218, 130, 31, 0.035) 0 1px, transparent 1px 58px);
+  color: #152920;
+}
+
+body[data-theme="light"] .cover {
+  background: linear-gradient(180deg, #ffffff, #fff3df);
+}
+
+body[data-theme="light"] .profile-block,
+body[data-theme="light"] .digital-connect-panel,
+body[data-theme="light"] .mini-viewer,
+body[data-theme="light"] .video-box,
+body[data-theme="light"] .premium-note,
+body[data-theme="light"] .catalogue-summary,
+body[data-theme="light"] .catalogue-strip,
+body[data-theme="light"] .product-row,
+body[data-theme="light"] .reviews-slider,
+body[data-theme="light"] .modal-card,
+body[data-theme="light"] .map-box,
+body[data-theme="light"] .ai-chat-panel {
+  border-color: rgba(222, 126, 29, 0.22);
+  background:
+    radial-gradient(circle at 16% 0%, rgba(255, 226, 161, 0.28), transparent 34%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 242, 224, 0.94));
+  color: #152920;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 16px 34px rgba(126, 63, 9, 0.12);
+}
+
+body[data-theme="light"] .primary-actions a,
+body[data-theme="light"] .primary-actions button,
+body[data-theme="light"] .connect-actions a,
+body[data-theme="light"] .connect-actions button,
+body[data-theme="light"] .icon-grid a,
+body[data-theme="light"] .icon-grid button,
+body[data-theme="light"] .service-list button,
+body[data-theme="light"] .contact-list a,
+body[data-theme="light"] .payment-row,
+body[data-theme="light"] .price-pair div,
+body[data-theme="light"] .feature-tags span,
+body[data-theme="light"] .legal-card,
+body[data-theme="light"] .qr-placeholder {
+  border-color: rgba(220, 126, 28, 0.22);
+  background:
+    radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.64), transparent 30%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 241, 221, 0.84));
+  color: #152920;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    0 10px 22px rgba(118, 62, 9, 0.08);
+}
+
+body[data-theme="light"] .profile-block h1,
+body[data-theme="light"] .profile-block .tagline,
+body[data-theme="light"] .profile-block .business-line,
+body[data-theme="light"] .owner-strip strong,
+body[data-theme="light"] .owner-strip span,
+body[data-theme="light"] .digital-connect-panel > div:first-child strong,
+body[data-theme="light"] .page-head h2,
+body[data-theme="light"] .product-row h3,
+body[data-theme="light"] .catalogue-summary strong,
+body[data-theme="light"] .catalogue-title strong,
+body[data-theme="light"] .review-card strong,
+body[data-theme="light"] .contact-list a,
+body[data-theme="light"] .service-list button,
+body[data-theme="light"] .icon-grid span {
+  color: #152920;
+  text-shadow: none;
+}
+
+body[data-theme="light"] .divider-title strong,
+body[data-theme="light"] .page-head span,
+body[data-theme="light"] .product-row .capacity,
+body[data-theme="light"] .catalogue-summary span,
+body[data-theme="light"] .catalogue-title span,
+body[data-theme="light"] .price-pair strong,
+body[data-theme="light"] .contact-list svg,
+body[data-theme="light"] .digital-connect-panel > div:first-child span {
+  color: #b65a08;
+}
+
+body[data-theme="light"] .brand-footline,
+body[data-theme="light"] .cover-badge,
+body[data-theme="light"] .primary-actions a:nth-child(1),
+body[data-theme="light"] .primary-actions a:nth-child(2),
+body[data-theme="light"] .row-actions a,
+body[data-theme="light"] .row-actions button,
+body[data-theme="light"] .modal-btn.gold,
+body[data-theme="light"] .bottom-nav button.active {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.46), transparent 45%),
+    linear-gradient(180deg, #ffd972, #e4a935 62%, #a97818);
+  color: #160c02;
+}
+
+body[data-theme="light"] .icon-grid .sensor-scan-tile,
+body[data-theme="light"] .icon-grid .gold-process-tile,
+body[data-theme="light"] .icon-grid .theme-toggle-tile,
+body[data-theme="light"] .icon-grid .rod-scan-tile,
+body[data-theme="light"] .icon-grid .inquiry-tile,
+body[data-theme="light"] .icon-grid .ai-chat-tile {
+  color: #ffffff;
+}
+
+body[data-theme="light"] .icon-grid .sensor-scan-tile span,
+body[data-theme="light"] .icon-grid .gold-process-tile span,
+body[data-theme="light"] .icon-grid .theme-toggle-tile span,
+body[data-theme="light"] .icon-grid .rod-scan-tile span,
+body[data-theme="light"] .icon-grid .inquiry-tile span,
+body[data-theme="light"] .icon-grid .ai-chat-tile span {
+  color: #fff7de;
+  text-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
+}

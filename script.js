@@ -3,6 +3,7 @@ const CONTACT = {
   owner: "Ashish Gaikwad",
   title: "Founder",
   call: "+919737555169",
+  secondaryCall: "+919737555196",
   whatsapp: "917500220015",
   inquiryWhatsapp: "919737555169",
   email: "shreekalimanufacturers@gmail.com",
@@ -16,6 +17,7 @@ const CONTACT = {
 
 const INQUIRY_STORAGE_KEY = "shreeKaliInquiryRecords";
 const VISITOR_STORAGE_KEY = "shreeKaliVisitorId";
+const THEME_STORAGE_KEY = "shreeKaliThemeMode";
 const OWNER_PASSWORD = "shreekali100cr";
 let ownerInquiryRecordsCache = [];
 let ownerInquiryPassword = "";
@@ -1159,7 +1161,7 @@ function productPriceListAnswer(language = "en") {
       "Official price list:",
       ...lines,
       "",
-      "Final amount confirm करने के लिए Inquiry Form खोलें या 9737555169 पर call करें."
+      "Final amount confirm करने के लिए Inquiry Form खोलें या 9737555169 / 9737555196 पर call करें."
     ].join("\n");
   }
 
@@ -1167,7 +1169,7 @@ function productPriceListAnswer(language = "en") {
     "Official product price list:",
     ...lines,
     "",
-    "For final amount confirmation, open Inquiry Form or call 9737555169."
+    "For final amount confirmation, open Inquiry Form or call 9737555169 / 9737555196."
   ].join("\n");
 }
 
@@ -1207,6 +1209,7 @@ function aiContactAnswer(language = "en") {
   if (language === "hi") {
     return [
       `Call: ${CONTACT.call}`,
+      `Second Call: ${CONTACT.secondaryCall}`,
       `WhatsApp: +${CONTACT.whatsapp}`,
       `Inquiry WhatsApp: +${CONTACT.inquiryWhatsapp}`,
       `Email: ${CONTACT.email}`,
@@ -1215,6 +1218,7 @@ function aiContactAnswer(language = "en") {
   }
   return [
     `Call: ${CONTACT.call}`,
+    `Second Call: ${CONTACT.secondaryCall}`,
     `WhatsApp: +${CONTACT.whatsapp}`,
     `Inquiry WhatsApp: +${CONTACT.inquiryWhatsapp}`,
     `Email: ${CONTACT.email}`,
@@ -1234,6 +1238,12 @@ function aiResolveAction(input) {
 
   if (!wantsOpen) return null;
 
+  if (aiHasAny(query, ["sensor", "sensor change", "sensor video", "sensor scanner", "सेंसर"])) {
+    return { type: "modal", modal: "sensorChangeModal", en: "Sensor Change Scanner", hi: "Sensor Change Scanner" };
+  }
+  if (aiHasAny(query, ["gold process", "gold melting process", "melting process", "process video", "melting video", "गल्ड", "गोल्ड", "प्रोसेस"])) {
+    return { type: "modal", modal: "goldProcessModal", en: "Gold Melting Process Scanner", hi: "Gold Melting Process Scanner" };
+  }
   if (aiHasAny(query, ["rod", "rod change", "scan video", "रॉड"])) {
     return { type: "modal", modal: "rodChangeModal", en: "Rod Change Scanner", hi: "Rod Change Scanner" };
   }
@@ -1286,14 +1296,14 @@ function aiAnswerQuestion(input, language = aiResolveLanguage(input)) {
   const query = aiIntentText(input);
   if (!query) {
     return language === "hi"
-      ? "Products, price, payment, contact, inquiry, gallery, QR, rod change या trust के बारे में पूछें."
-      : "Ask about products, prices, payment, contact, inquiry, gallery, QR, rod change, or trust.";
+      ? "Products, price, payment, contact, inquiry, gallery, QR, rod change, sensor change, gold melting process या trust के बारे में पूछें."
+      : "Ask about products, prices, payment, contact, inquiry, gallery, QR, rod change, sensor change, gold melting process, or trust.";
   }
 
   if (aiHasAny(query, ["hi", "hello", "hey", "namaste", "नमस्ते"])) {
     return language === "hi"
-      ? "नमस्ते. मैं Shree Kali DZ Card assistant हूं. Price, model, payment और sections खोलने में मदद कर सकता हूं."
-      : "Hello. I can help with Shree Kali prices, model choice, payment, contact, and opening card sections.";
+      ? "नमस्ते. मैं Shree Kali DZ Card assistant हूं. Price, model, payment, scanner और sections खोलने में मदद कर सकता हूं."
+      : "Hello. I can help with Shree Kali prices, model choice, payment, contact, scanners, and opening card sections.";
   }
 
   if (aiHasAny(query, ["price list", "all price", "all product", "पूरी price", "सभी price"]) || (query.includes("catalog") && query.includes("price"))) {
@@ -1340,10 +1350,22 @@ function aiAnswerQuestion(input, language = aiResolveLanguage(input)) {
       : "Trust section has certificates, Google-style reviews, visitor counter, map, and business links.";
   }
 
+  if (aiHasAny(query, ["sensor", "sensor change", "sensor video", "sensor scanner", "सेंसर"])) {
+    return language === "hi"
+      ? "Sensor Change Video button से exact scanner open करें. Supported browser में Open Video From QR button video link खोलने की कोशिश करेगा."
+      : "Use the Sensor Change Video button to open the exact scanner. In supported browsers, Open Video From QR tries to open the video link directly.";
+  }
+
+  if (aiHasAny(query, ["gold process", "gold melting process", "melting process", "process video", "melting video", "गोल्ड", "प्रोसेस"])) {
+    return language === "hi"
+      ? "Gold Melting Process button से exact scanner open करें. Supported browser में Open Video From QR button video link खोलने की कोशिश करेगा."
+      : "Use the Gold Melting Process button to open the exact scanner. In supported browsers, Open Video From QR tries to open the video link directly.";
+  }
+
   if (aiHasAny(query, ["rod", "scanner", "scan", "qr", "रॉड", "स्कैन"])) {
     return language === "hi"
-      ? "Rod Change button से scanner open करें. Business QR के लिए QR Code button use करें."
-      : "Use Rod Change for the scanner. Use QR Code for the business QR.";
+      ? "Rod Change से rod scanner, Sensor Change Video से sensor scanner, Gold Melting Process से melting process scanner और QR Code से business QR open करें."
+      : "Use Rod Change for the rod scanner, Sensor Change Video for the sensor scanner, Gold Melting Process for the melting process scanner, and QR Code for the business QR.";
   }
 
   if (aiHasAny(query, ["gallery", "video", "photo", "image", "गैलरी", "वीडियो"])) {
@@ -1353,8 +1375,8 @@ function aiAnswerQuestion(input, language = aiResolveLanguage(input)) {
   }
 
   return language === "hi"
-    ? "मैं इस DZ card से short answer देता हूं. Product price, payment, contact, inquiry, gallery, QR, rod change या trust के बारे में पूछें."
-    : "I answer from this DZ card. Ask about product price, payment, contact, inquiry, gallery, QR, rod change, or trust.";
+    ? "मैं इस DZ card से short answer देता हूं. Product price, payment, contact, inquiry, gallery, QR, rod change, sensor change, gold melting process या trust के बारे में पूछें."
+    : "I answer from this DZ card. Ask about product price, payment, contact, inquiry, gallery, QR, rod change, sensor change, gold melting process, or trust.";
 }
 
 function aiHandleQuestion(input) {
@@ -1502,7 +1524,7 @@ function seedAiChat() {
   if (!messages || messages.childElementCount) return;
   addAiChatMessage(
     "bot",
-    "Hi. Ask in English or Hindi. I can answer prices, payment, contact, inquiry, and open Products, Pay, Gallery, QR, Rod Change, or Trust."
+    "Hi. Ask in English or Hindi. I can answer prices, payment, contact, inquiry, and open Products, Pay, Gallery, QR, Rod Change, Sensor Change, Gold Melting Process, or Trust."
   );
 }
 
@@ -1926,9 +1948,9 @@ function bindModals() {
   });
 }
 
-function bindRodChangeScanner() {
-  const button = document.querySelector("[data-open-rod-video]");
-  const qrImage = document.getElementById("rodChangeQr");
+function bindQrVideoButton(buttonSelector, imageId) {
+  const button = document.querySelector(buttonSelector);
+  const qrImage = document.getElementById(imageId);
   if (!button || !qrImage) return;
 
   const originalLabel = button.textContent;
@@ -1936,6 +1958,14 @@ function bindRodChangeScanner() {
   button.addEventListener("click", async () => {
     button.disabled = true;
     button.textContent = "Opening...";
+
+    const directUrl = String(button.dataset.videoUrl || "").trim();
+    if (directUrl) {
+      window.open(directUrl, "_blank", "noopener");
+      button.textContent = originalLabel;
+      button.disabled = false;
+      return;
+    }
 
     try {
       if ("BarcodeDetector" in window) {
@@ -1960,6 +1990,12 @@ function bindRodChangeScanner() {
       button.disabled = false;
     }, 2200);
   });
+}
+
+function bindRodChangeScanner() {
+  bindQrVideoButton("[data-open-rod-video]", "rodChangeQr");
+  bindQrVideoButton("[data-open-sensor-video]", "sensorChangeQr");
+  bindQrVideoButton("[data-open-gold-process-video]", "goldProcessQr");
 }
 
 function openDialog(dialog) {
@@ -1990,6 +2026,7 @@ function bindSaveContact() {
         `ORG:${CONTACT.company}`,
         `TITLE:${CONTACT.title}`,
         `TEL;TYPE=CELL:${CONTACT.call}`,
+        `TEL;TYPE=VOICE:${CONTACT.secondaryCall}`,
         `TEL;TYPE=WORK:${CONTACT.whatsapp}`,
         `EMAIL:${CONTACT.email}`,
         `URL:${CONTACT.website}`,
@@ -2023,6 +2060,44 @@ function bindShare() {
     }
 
     await copyText(window.location.href);
+  });
+}
+
+function setThemeMode(theme) {
+  const nextTheme = theme === "light" ? "light" : "dark";
+  document.body.dataset.theme = nextTheme;
+
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+  } catch {
+    // Local storage can be blocked in some embedded browsers.
+  }
+
+  document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+    const isDark = nextTheme === "dark";
+    button.setAttribute("aria-pressed", String(isDark));
+    const label = button.querySelector("span");
+    const detail = button.querySelector("small");
+    if (label) label.textContent = isDark ? "Dark Mode" : "Light Mode";
+    if (detail) detail.textContent = isDark ? "Professional" : "White Gold";
+  });
+}
+
+function bindThemeMode() {
+  let savedTheme = "dark";
+
+  try {
+    savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || "dark";
+  } catch {
+    savedTheme = "dark";
+  }
+
+  setThemeMode(savedTheme);
+
+  document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+    button.addEventListener("click", () => {
+      setThemeMode(document.body.dataset.theme === "dark" ? "light" : "dark");
+    });
   });
 }
 
@@ -2160,6 +2235,7 @@ function init() {
   bindAiAssistant();
   bindSaveContact();
   bindShare();
+  bindThemeMode();
   bindSpinViewer();
   bindMobileAppMode();
   refreshIcons();

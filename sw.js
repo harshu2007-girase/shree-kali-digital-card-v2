@@ -1,4 +1,4 @@
-const CACHE_NAME = "shree-kali-dg-card-v52";
+const CACHE_NAME = "shree-kali-dg-card-v58";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -14,7 +14,10 @@ self.addEventListener("install", (event) => {
         "./assets/images/brand/premium-white-green-hero.webp",
         "./assets/images/brand/ashish-gaikwad.webp",
         "./assets/images/payments/bank-of-maharashtra-new-payment.jpeg",
+        "./assets/images/qr/digital-business-application.jpeg",
+        "./assets/images/qr/gold-melting-process.png",
         "./assets/images/qr/rod-change-scanner-v2.jpeg",
+        "./assets/images/qr/sensor-change-video.png",
         "./assets/docs/shree-kali-manufacturers-catalogue.pdf",
         "./assets/images/catalogue/products/nexon-1kg-economic-display.webp",
         "./assets/images/catalogue/products/nexon-1kg-commercial-display.webp",
