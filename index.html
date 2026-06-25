@@ -17,6 +17,135 @@
     <link rel="apple-touch-icon" href="assets/images/brand/logo.webp">
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="stylesheet" href="styles.css?v=43">
+    <style>
+      .video-library {
+        display: grid;
+        gap: 13px;
+      }
+
+      .video-library-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .video-library-head span {
+        display: block;
+        color: var(--gold-bright);
+        font-size: 10px;
+        font-weight: 950;
+        text-transform: uppercase;
+      }
+
+      .video-library-head strong {
+        display: block;
+        margin-top: 3px;
+        color: var(--steel);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .video-library-head a,
+      .process-video-copy a {
+        flex: 0 0 auto;
+        border: 1px solid rgba(255, 223, 122, 0.36);
+        border-radius: 999px;
+        padding: 8px 11px;
+        background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+        color: var(--black);
+        font-size: 11px;
+        font-weight: 950;
+      }
+
+      .process-video-grid {
+        display: grid;
+        gap: 13px;
+      }
+
+      .process-video-card {
+        display: grid;
+        gap: 9px;
+        padding-top: 13px;
+        border-top: 1px solid rgba(255, 223, 122, 0.18);
+      }
+
+      .process-video-card:first-child {
+        padding-top: 0;
+        border-top: 0;
+      }
+
+      .process-video-media {
+        position: relative;
+        overflow: hidden;
+        border-radius: 13px;
+        background:
+          radial-gradient(circle at 50% 18%, rgba(255, 243, 177, 0.2), transparent 34%),
+          linear-gradient(145deg, #051522, #02060a);
+      }
+
+      .process-video-media video {
+        display: block;
+        width: 100%;
+        aspect-ratio: 9 / 15;
+        max-height: 540px;
+        margin: 0;
+        border-radius: 13px;
+        object-fit: cover;
+        background: var(--black);
+      }
+
+      .video-chip {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        border: 1px solid rgba(255, 223, 122, 0.34);
+        border-radius: 999px;
+        padding: 5px 9px;
+        background: rgba(2, 8, 10, 0.72);
+        color: rgba(255, 246, 206, 0.94);
+        font-size: 10px;
+        font-weight: 950;
+        text-transform: uppercase;
+        backdrop-filter: blur(10px);
+      }
+
+      .process-video-copy {
+        display: grid;
+        gap: 5px;
+      }
+
+      .process-video-copy strong {
+        color: var(--gold-bright);
+        font-size: 14px;
+      }
+
+      .process-video-copy span {
+        color: rgba(215, 226, 234, 0.78);
+        font-size: 11px;
+        font-weight: 750;
+        line-height: 1.45;
+      }
+
+      .process-video-copy a {
+        width: fit-content;
+        margin-top: 3px;
+        background: rgba(215, 226, 234, 0.08);
+        color: var(--steel);
+      }
+
+      @media (min-width: 760px) {
+        .process-video-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          align-items: start;
+        }
+
+        .process-video-card {
+          padding-top: 0;
+          border-top: 0;
+        }
+      }
+    </style>
   </head>
   <body data-theme="dark">
     <main class="dg-shell" aria-label="Shree Kali Manufacturers digital business card">
@@ -229,11 +358,68 @@
         </div>
         <div class="gallery-grid" id="galleryGrid"></div>
 
-        <article class="video-box" id="videoBlock">
-          <strong>Machine Demo Video</strong>
-          <video controls playsinline preload="metadata" poster="assets/images/products/machine-11.webp">
-            <source src="assets/videos/machine-demo.mp4" type="video/mp4">
-          </video>
+        <article class="video-box video-library" id="videoBlock">
+          <div class="video-library-head">
+            <div>
+              <span>Service Video Gallery</span>
+              <strong>Machine demo, rod change, sensor change and gold melting process videos</strong>
+            </div>
+            <a href="https://youtube.com/@shreekalimanufacturers?si=a5KSpqVv6O_EsZQr" target="_blank" rel="noopener">YouTube</a>
+          </div>
+          <div class="process-video-grid" aria-label="Service videos">
+            <article class="process-video-card">
+              <div class="process-video-media">
+                <video controls playsinline preload="metadata" poster="assets/images/videos/machine-demo-thumbnail.jpg">
+                  <source src="assets/videos/machine-demo.mp4" type="video/mp4">
+                </video>
+                <span class="video-chip">Machine Demo</span>
+              </div>
+              <div class="process-video-copy">
+                <strong>Machine Demo Video</strong>
+                <span>Original product demo video restored with the service video gallery.</span>
+                <a href="assets/videos/machine-demo.mp4" target="_blank" rel="noopener">Open Full Video</a>
+              </div>
+            </article>
+            <article class="process-video-card">
+              <div class="process-video-media">
+                <video controls playsinline preload="metadata" poster="assets/images/videos/rod-change-thumbnail.jpg">
+                  <source src="assets/videos/rod-change.mp4" type="video/mp4">
+                </video>
+                <span class="video-chip">Rod Change</span>
+              </div>
+              <div class="process-video-copy">
+                <strong>Rod Change Guide</strong>
+                <span>Step-by-step rod replacement service video for Shree Kali machines.</span>
+                <a href="assets/videos/rod-change.mp4" target="_blank" rel="noopener">Open Full Video</a>
+              </div>
+            </article>
+            <article class="process-video-card">
+              <div class="process-video-media">
+                <video controls playsinline preload="metadata" poster="assets/images/videos/sensor-change-thumbnail.jpg">
+                  <source src="assets/videos/sensor-change.mp4" type="video/mp4">
+                </video>
+                <span class="video-chip">Sensor Change</span>
+              </div>
+              <div class="process-video-copy">
+                <strong>Sensor Change Guide</strong>
+                <span>Sensor replacement process with the exact local video added to the card.</span>
+                <a href="assets/videos/sensor-change.mp4" target="_blank" rel="noopener">Open Full Video</a>
+              </div>
+            </article>
+            <article class="process-video-card">
+              <div class="process-video-media">
+                <video controls playsinline preload="metadata" poster="assets/images/videos/gold-melting-process-thumbnail.jpg">
+                  <source src="assets/videos/gold-melting-process.mp4" type="video/mp4">
+                </video>
+                <span class="video-chip">Gold Process</span>
+              </div>
+              <div class="process-video-copy">
+                <strong>Gold Melting Process</strong>
+                <span>Working process video showing the furnace setup and gold melting flow.</span>
+                <a href="assets/videos/gold-melting-process.mp4" target="_blank" rel="noopener">Open Full Video</a>
+              </div>
+            </article>
+          </div>
         </article>
 
         <article class="catalogue-strip">
@@ -532,8 +718,8 @@
       <div class="qr-placeholder rod-qr-box">
         <img id="rodChangeQr" src="assets/images/qr/rod-change-scanner-v2.jpeg" alt="Rod change video scanner QR code">
         <strong>Rod Change Video</strong>
-        <span>Scan this QR to open the rod change video.</span>
-        <button class="modal-btn gold" type="button" data-open-rod-video>Open Video From QR</button>
+        <span>Rod change video is also available in the gallery.</span>
+        <button class="modal-btn gold" type="button" data-open-rod-video data-video-url="assets/videos/rod-change.mp4">Open Video</button>
         <a class="modal-btn light" href="assets/images/qr/rod-change-scanner-v2.jpeg" target="_blank" rel="noopener">Open Scanner</a>
       </div>
     </dialog>
@@ -546,8 +732,8 @@
       <div class="qr-placeholder sensor-qr-box">
         <img id="sensorChangeQr" src="assets/images/qr/sensor-change-video.png" alt="Sensor change video scanner QR code">
         <strong>Sensor Change Video</strong>
-        <span>Scan this exact QR to open the sensor change video, or tap the button below on supported browsers.</span>
-        <button class="modal-btn gold" type="button" data-open-sensor-video>Open Video From QR</button>
+        <span>Sensor change video is also available in the gallery.</span>
+        <button class="modal-btn gold" type="button" data-open-sensor-video data-video-url="assets/videos/sensor-change.mp4">Open Video</button>
         <a class="modal-btn light" href="assets/images/qr/sensor-change-video.png" target="_blank" rel="noopener">Open Scanner</a>
       </div>
     </dialog>
@@ -560,8 +746,8 @@
       <div class="qr-placeholder gold-process-qr-box">
         <img id="goldProcessQr" src="assets/images/qr/gold-melting-process.png" alt="Gold melting process video scanner QR code">
         <strong>Gold Melting Process Video</strong>
-        <span>Scan this exact QR to open the gold melting process video.</span>
-        <button class="modal-btn gold" type="button" data-open-gold-process-video>Open Video From QR</button>
+        <span>Gold melting process video is also available in the gallery.</span>
+        <button class="modal-btn gold" type="button" data-open-gold-process-video data-video-url="assets/videos/gold-melting-process.mp4">Open Video</button>
         <a class="modal-btn light" href="assets/images/qr/gold-melting-process.png" target="_blank" rel="noopener">Open Scanner</a>
       </div>
     </dialog>

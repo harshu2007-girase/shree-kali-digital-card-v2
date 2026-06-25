@@ -281,58 +281,47 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  if (externalPath) {
-    fs.stat(filePath, (err, stat) => {
-      if (err || !stat.isFile()) {
-        send(res, 404, "Not found");
-        return;
-      }
-
-      const type = types[path.extname(filePath).toLowerCase()] || "application/octet-stream";
-      const range = req.headers.range;
-      const headers = {
-        "Content-Type": type,
-        "Cache-Control": "no-store",
-        "Accept-Ranges": "bytes"
-      };
-
-      let start = 0;
-      let end = stat.size - 1;
-      let status = 200;
-
-      if (range) {
-        const match = /^bytes=(\d*)-(\d*)$/.exec(range);
-        if (match) {
-          start = match[1] ? Number(match[1]) : 0;
-          end = match[2] ? Number(match[2]) : end;
-          if (start > end || end >= stat.size) {
-            res.writeHead(416, { "Content-Range": `bytes */${stat.size}` });
-            res.end();
-            return;
-          }
-          status = 206;
-          headers["Content-Range"] = `bytes ${start}-${end}/${stat.size}`;
-        }
-      }
-
-      headers["Content-Length"] = end - start + 1;
-      res.writeHead(status, headers);
-      if (req.method === "HEAD") {
-        res.end();
-        return;
-      }
-      fs.createReadStream(filePath, { start, end }).pipe(res);
-    });
-    return;
-  }
-
-  fs.readFile(filePath, (err, data) => {
-    if (err) {
+  fs.stat(filePath, (err, stat) => {
+    if (err || !stat.isFile()) {
       send(res, 404, "Not found");
       return;
     }
 
-    send(res, 200, data, types[path.extname(filePath).toLowerCase()] || "application/octet-stream");
+    const type = types[path.extname(filePath).toLowerCase()] || "application/octet-stream";
+    const range = req.headers.range;
+    const headers = {
+      "Content-Type": type,
+      "Cache-Control": "no-store",
+      "Accept-Ranges": "bytes"
+    };
+
+    let start = 0;
+    let end = stat.size - 1;
+    let status = 200;
+
+    if (range) {
+      const match = /^bytes=(\d*)-(\d*)$/.exec(range);
+      if (match) {
+        start = match[1] ? Number(match[1]) : 0;
+        end = match[2] ? Number(match[2]) : end;
+        if (start > end || end >= stat.size) {
+          res.writeHead(416, { "Content-Range": `bytes */${stat.size}` });
+          res.end();
+          return;
+        }
+        status = 206;
+        headers["Content-Range"] = `bytes ${start}-${end}/${stat.size}`;
+      }
+    }
+
+    headers["Content-Length"] = end - start + 1;
+    res.writeHead(status, headers);
+    if (req.method === "HEAD") {
+      res.end();
+      return;
+    }
+
+    fs.createReadStream(filePath, { start, end }).pipe(res);
   });
   }).catch(() => sendJson(res, 500, { ok: false, error: "Server error" }));
 });
